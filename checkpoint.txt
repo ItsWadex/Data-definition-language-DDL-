@@ -1,0 +1,23 @@
+CREATE TABLE Customer (
+  Customer_id VARCHAR2(20) PRIMARY KEY,
+  customer_Name VARCHAR2(20) NOT NULL,
+  customer_Tel NUMBER ,
+);
+
+CREATE TABLE Product (
+  Product_id VARCHAR2(20) PRIMARY KEY,
+  product_name VARCHAR2(20) NOT NULL,
+  Price NUMBER CHECK (Price > 0) ,
+);
+
+CREATE TABLE Orders (
+  Customer_id VARCHAR2(20) REFERENCES Customer(Customer_id),
+  Product_id VARCHAR2(20) REFERENCES Product(Product_id),
+  quantity NUMBER NOT NULL,
+  total_amount NUMBER NOT NULL,
+);
+
+ALTER TABLE Product
+ADD category VARCHAR2(20);
+ALTER TABLE Orders
+ADD OrderDate DATE DEFAULT SYSDATE;
